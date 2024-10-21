@@ -4,13 +4,16 @@ import api from "../utils/api";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import { useNavigate } from 'react-router-dom';
 
-const TodoPage = () => {
+const TodoPage = ({user, setUser}) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
+  const navigate = useNavigate()
 
   const getTasks = async () => {
     const response = await api.get("/tasks");
+    // console.log("taskList", response.data.data)
     setTodoList(response.data.data);
   };
   useEffect(() => {
@@ -33,7 +36,7 @@ const TodoPage = () => {
 
   const deleteItem = async (id) => {
     try {
-      console.log(id);
+      // console.log(id);
       const response = await api.delete(`/tasks/${id}`);
       if (response.status === 200) {
         getTasks();
@@ -56,8 +59,20 @@ const TodoPage = () => {
       console.log("error", error);
     }
   };
+
+  const handleLogout = () => {
+    console.log("checked!!!1")
+    sessionStorage.removeItem("token")
+    setUser(null)
+    
+    window.location.reload();
+  }
+
   return (
     <Container>
+      <div>
+        <button className="button-delete" onClick={handleLogout}>로그아웃</button>
+      </div>
       <Row className="add-item-row">
         <Col xs={12} sm={10}>
           <input
