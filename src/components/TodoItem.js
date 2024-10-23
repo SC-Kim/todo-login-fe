@@ -10,7 +10,7 @@ const TodoItem = ({ item, deleteItem, toggleComplete }) => {
           <div className="todo-content">{item.task}</div>
           {item.author?.name && <div> by {item.author.name} </div>}
 
-          <div>
+          <div> 
             <button
               className="button-delete"
               onClick={() => deleteItem(item._id)}

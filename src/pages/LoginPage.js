@@ -78,7 +78,7 @@ const LoginPage = ({user, setUser}) => {
           <Button type="submit" className="button-primary">
             Login
           </Button>
-          <span>
+          <span className="text-black">
             계정이 없다면? <Link to="/register">회원가입 하기</Link>
           </span>
         </div>

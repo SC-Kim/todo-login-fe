@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 
 const TodoBoard = ({ todoList, deleteItem, toggleComplete }) => {
   return (
-    <div>
+    <div className="todo-container">
       <h2>Todo List</h2>
       {todoList.length > 0 &&
         todoList.map((item, index) => (
